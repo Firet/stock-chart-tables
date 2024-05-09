@@ -1,13 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
-import Chart from './chart';
+import  Chart   from './chart';
+import FetchStockValues  from './fetch/fetchStockValues';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <Chart />
+      <FetchStockValues />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Counter />
