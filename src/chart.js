@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from "highcharts/highstock";
+import { useSelector } from 'react-redux';
 
 const Chart = () => {
   const [hoverData, setHoverData] = useState(null);
@@ -31,7 +32,8 @@ const Chart = () => {
         ]
     });
   }
-
+  const stockData = useSelector(state => state.data); // Obtiene los datos del estado
+  console.log('stockData es ', stockData);
   return (
     <div>
         <HighchartsReact

@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { setData } from '../features/data/dataSlice';
 
 const FetchStockValues = () => {
 
 
-const [data, setData] = useState(null); // State to store fetched data
+// const [data, setData] = useState(null); // State to store fetched data
+const dispatch = useDispatch();
+const data = useSelector((state) => state.data); // Get data from Redux store
 
 useEffect(() => {
   const fetchData = async () => {
@@ -12,6 +16,7 @@ useEffect(() => {
 	  const response = await axios.get('https://api.twelvedata.com/stocks?symbol=NFLX&source=docs');
 	  const responseData = response.data;
 	  setData(responseData);
+    dispatch(setData(responseData)); // Dispatch action with fetched data
 	} catch (error) {
 	  console.error(error);
 	}
