@@ -1,11 +1,13 @@
 import React from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
+import Chart from './chart';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
+      <Chart />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Counter />
