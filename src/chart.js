@@ -1,16 +1,21 @@
-import React, { Suspense, useState } from 'react';
+import React, { useState } from 'react';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from "highcharts/highstock";
 import { useSelector } from 'react-redux';
 
 const Chart = () => {
 	const [hoverData, setHoverData] = useState(null);
+	const stockData = useSelector(state => state.data);
+	console.log('stockData.data es ', stockData?.data?.values[0]?.open);
+	let dataStockOpen = [200, 300, 250, 500];
+	dataStockOpen = [stockData?.data?.values[0]?.open ? stockData?.data?.values[0]?.open : null, 1, 2];
+	
 	const [chartOptions, setChartOptions] = useState({
 		xAxis: {
 			title: {
 				text: 'Intervalo'
 			},
-			categories: ['A', 'B', 'C'],
+			categories: ['Cat A', 'Cat B', 'Cat C'],
 		},
 		yAxis: {
 			title: {
@@ -18,7 +23,7 @@ const Chart = () => {
 			}
 		},
 		series: [
-			{ data: [1, 2, 3] }
+			{ data: dataStockOpen }
 		],
 		plotOptions: {
 			series: {
@@ -41,14 +46,14 @@ const Chart = () => {
 		});
 	}
 
-	const stockData = useSelector(state => state.data);
-	console.log('stockData es ', stockData);
 	if(!stockData) {
 		return <div>Loading...</div>;
 	}
 	return (
 		<div>
-			<h3>Nombre acción</h3>
+			<h3>Nombre acción {stockData?.data?.meta?.symbol}</h3>
+			<h3>Intervalo {stockData?.data?.meta?.interval}</h3>
+
 			<HighchartsReact
 				highcharts={Highcharts}
 				options={chartOptions}
