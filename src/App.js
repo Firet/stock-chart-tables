@@ -1,5 +1,5 @@
 import React from 'react';
-import  Chart   from './chart';
+import  Chart   from './chart/chart';
 import FetchStockValues  from './fetch/fetchStockValues';
 import './App.css';
 
