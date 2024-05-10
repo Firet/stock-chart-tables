@@ -1,68 +1,48 @@
-import React, { useState } from 'react';
+import React from 'react';
 import HighchartsReact from 'highcharts-react-official';
-import Highcharts from "highcharts/highstock";
+import Highcharts from 'highcharts/highstock';
 import { useSelector } from 'react-redux';
 
 const Chart = () => {
-	const [hoverData, setHoverData] = useState(null);
-	const stockData = useSelector(state => state.data);
-	console.log('stockData.data es ', stockData?.data?.values[0]?.open);
-	let dataStockOpen = [200, 300, 250, 500];
-	dataStockOpen = [stockData?.data?.values[0]?.open ? stockData?.data?.values[0]?.open : null, 1, 2];
-	
-	const [chartOptions, setChartOptions] = useState({
+	const stockData = useSelector((state) => state.data);
+	const dateTime = stockData?.data?.values.map(item => item.datetime)
+	const stockOpen = stockData?.data?.values.map(item => Number(item.open));
+
+	const chartOptions = {
 		xAxis: {
 			title: {
-				text: 'Intervalo'
+				text: "Intervalo",
 			},
-			categories: ['Cat A', 'Cat B', 'Cat C'],
+			categories: dateTime,
 		},
 		yAxis: {
 			title: {
-				text: 'Cotización'
-			}
+				text: "Cotización",
+			},
 		},
 		series: [
-			{ data: dataStockOpen }
+			{
+				name: "Valor",
+				id: "1",
+				data: stockOpen,
+			},
 		],
-		plotOptions: {
-			series: {
-				point: {
-					events: {
-						mouseOver(e) {
-							setHoverData(e.target.category)
-						}
-					}
-				}
-			}
-		}
-	});
+	};
 
-	const updateSeries = () => {
-		setChartOptions({
-			series: [
-				{ data: [Math.random() * 5, 2, 1] }
-			]
-		});
-	}
-
-	if(!stockData) {
-		return <div>Loading...</div>;
+	if (!stockData) {
+		return <div>Cargando...</div>;
 	}
 	return (
 		<div>
-			<h3>Nombre acción {stockData?.data?.meta?.symbol}</h3>
+			<h3>Nombre activo {stockData?.data?.meta?.symbol}</h3>
 			<h3>Intervalo {stockData?.data?.meta?.interval}</h3>
-
 			<HighchartsReact
 				highcharts={Highcharts}
 				options={chartOptions}
 				constructorType={"stockChart"}
 			/>
-			<h3>Hovering over {hoverData}</h3>
-			<button onClick={updateSeries}>Update Series</button>
 		</div>
-	)
-}
+	);
+};
 
 export default Chart;
