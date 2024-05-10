@@ -6,13 +6,10 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          This is app.js
-        </p>
-      </header>
       <FetchStockValues />
-      <Chart />
+      <div className="chart-container">
+        <Chart />
+      </div>
     </div>
   );
 }
