@@ -1,14 +1,16 @@
 import React from 'react';
 import  Chart   from './chart/chart';
-import FetchStockValues  from './fetch/fetchStockValues';
+import  useFetchStock   from './hooks/useFetchStock';
 import './App.css';
 
 function App() {
+  const isDataFetch = useFetchStock();
+
   return (
     <div className="App">
-      <FetchStockValues />
+      <h1>Gráfico</h1>
       <div className="chart-container">
-        <Chart />
+        { isDataFetch ? <Chart /> : <div>Cargando</div> }
       </div>
     </div>
   );
