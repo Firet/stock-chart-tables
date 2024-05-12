@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 
 const Chart = () => {
 	const stockData = useSelector((state) => state.data);
-	const dateTime = stockData?.data?.values.map(item => item.datetime)
-	const stockVolume = stockData?.data?.values.map(item => Number(item.volume));
-	const stockOpen = stockData?.data?.values.map(item => Number(item.open));
+	const dateTime = stockData?.data?.values.map(item => item.datetime).reverse();
+	const stockVolume = stockData?.data?.values.map(item => Number(item.volume)).reverse();
+	const stockOpen = stockData?.data?.values.map(item => Number(item.open)).reverse();
 
 	const chartOptions = {
 		rangeSelector: {
