@@ -10,13 +10,6 @@ const Chart = () => {
 	const stockOpen = stockData?.data?.values.map(item => Number(item.open));
 
 	const chartOptions = {
-		title: {
-			text: `Activo ${stockData?.data?.meta?.symbol}`
-		},
-
-		subtitle: {
-			text: `Intervalo ${stockData?.data?.meta?.interval}`
-		},
 		rangeSelector: {
 			floating: true,
 			y: -65,
@@ -93,18 +86,6 @@ const Chart = () => {
 				data: stockOpen,
 			},
 		],
-		responsive: {
-			rules: [{
-				condition: {
-					maxWidth: 800
-				},
-				chartOptions: {
-					rangeSelector: {
-						inputEnabled: false
-					}
-				}
-			}]
-		}
 	};
 
 	if (!stockData) {
@@ -112,6 +93,8 @@ const Chart = () => {
 	}
 	return (
 		<div>
+				<h3>Activo {stockData?.data?.meta?.symbol}</h3>
+				<h3>Intervalo {stockData?.data?.meta?.interval}</h3>
 			<HighchartsReact
 				highcharts={Highcharts}
 				options={chartOptions}
