@@ -1,5 +1,6 @@
 import React from 'react';
 import Chart from './chart/chart';
+import CustomSelect from './select/select'
 import useFetchStock from './hooks/useFetchStock';
 import './App.css';
 
@@ -9,6 +10,7 @@ function App() {
 	return (
 		<div className="App">
 			<h1>Gráfico</h1>
+			<CustomSelect />
 			<div className="chart-container">
 				{isDataFetch ? <Chart /> : <div>Cargando</div>}
 			</div>

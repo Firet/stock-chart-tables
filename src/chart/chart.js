@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 const Chart = () => {
 	const stockData = useSelector((state) => state.data);
+	const interval = stockData.interval;
 	const dateTime = stockData?.data?.values.map(item => item.datetime).reverse();
 	const stockVolume = stockData?.data?.values.map(item => Number(item.volume)).reverse();
 	const stockOpen = stockData?.data?.values.map(item => Number(item.open)).reverse();
@@ -94,7 +95,7 @@ const Chart = () => {
 	return (
 		<div>
 				<h3>Activo {stockData?.data?.meta?.symbol}</h3>
-				<h3>Intervalo {stockData?.data?.meta?.interval}</h3>
+				<p>Intervalo {stockData?.interval ? interval : ''}</p>
 			<HighchartsReact
 				highcharts={Highcharts}
 				options={chartOptions}
