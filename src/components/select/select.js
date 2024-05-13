@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from "react-select";
 import { useDispatch } from 'react-redux';
-import { setStockInterval } from '../slices/dataSlice';
+import { setStockInterval } from '../../slices/dataSlice';
 import './select.css';
 
 const CustomSelect = () => {

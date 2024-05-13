@@ -1,6 +1,6 @@
 import React from 'react';
-import Chart from './chart/chart';
-import CustomSelect from './select/select'
+import Chart from './components/chart/chart';
+import CustomSelect from './components/select/select'
 import useFetchStock from './hooks/useFetchStock';
 import './App.css';
 

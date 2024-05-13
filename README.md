@@ -18,3 +18,10 @@ and then
 
 > **Note:** if npm start doesn't work try with `npm start --openssl-legacy-provide`.
 
+- Get your api key by creating an account in [Twelvedata](https://twelvedata.com/)
+
+- Create an `.env` file and store your api key in a variable named `REACT_APP_API_KEY`
+
+- Finally, open http://localhost:3000 with your browser to see the result
+
+That's it! 

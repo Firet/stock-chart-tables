@@ -2,6 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { setData } from '../slices/dataSlice';
+import 'dotenv/config';
+
 
 const useFetchStock = () => {
 
@@ -11,7 +13,7 @@ const useFetchStock = () => {
 	const symbol = 'TSLA'
 	const startDate = '2024-05-10%2008:48:00';
 	const endDate = '2024-05-10%2009:48:00';
-	const apiKey = 'f5a3b0164cf24ed1b0e554793421d7c4';
+	const apiKey = process.env.REACT_APP_API_KEY;
 	const url = `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=${interval}&start_date=${startDate}&end_date=${endDate}&apikey=${apiKey}`;
 
 	const fetchData = async () => {
