@@ -2,6 +2,7 @@ import React from 'react';
 import Select from "react-select";
 import { useDispatch } from 'react-redux';
 import { setStockInterval } from '../slices/dataSlice';
+import './select.css';
 
 const CustomSelect = () => {
     const dispatch = useDispatch();
@@ -22,7 +23,8 @@ const CustomSelect = () => {
     }
 
     return (
-        <div>
+        <div className='select-container'>
+            <p>Seleccioná un intervalo</p>
             <Select onChange={handleSelect} placeholder='1 minuto' options={groupedOptions} />
         </div>
     );

@@ -7,14 +7,14 @@ const Chart = () => {
 	const stockData = useSelector((state) => state.data);
 	const interval = stockData.interval;
 
-	let dateTime = [];
-	let stockVolume = [];
-	let stockOpen = [];
+	let dateSeries = [];
+	let valumeSeries = [];
+	let openSeries = [];
 
 	if (stockData.data.status === 'ok') {
-		dateTime = stockData?.data?.values.map(item => item.datetime).reverse();
-		stockVolume = stockData?.data?.values.map(item => Number(item.volume)).reverse();
-		stockOpen = stockData?.data?.values.map(item => Number(item.open)).reverse();
+		dateSeries = stockData?.data?.values.map(item => item.datetime).reverse();
+		valumeSeries = stockData?.data?.values.map(item => Number(item.volume)).reverse();
+		openSeries = stockData?.data?.values.map(item => Number(item.open)).reverse();
 	}
 
 
@@ -28,7 +28,7 @@ const Chart = () => {
 			title: {
 				text: "Intervalo",
 			},
-			categories: dateTime,
+			categories: dateSeries,
 		},
 		yAxis: [{
 			title: {
@@ -86,13 +86,13 @@ const Chart = () => {
 				type: "column",
 				name: "Volumen",
 				id: "aapl-volume",
-				data: stockVolume,
+				data: valumeSeries,
 				yAxis: 1
 			},
 			{
 				name: "Open",
 				id: "open",
-				data: stockOpen,
+				data: openSeries,
 			},
 		],
 	};
