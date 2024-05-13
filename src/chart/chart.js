@@ -6,9 +6,17 @@ import { useSelector } from 'react-redux';
 const Chart = () => {
 	const stockData = useSelector((state) => state.data);
 	const interval = stockData.interval;
-	const dateTime = stockData?.data?.values.map(item => item.datetime).reverse();
-	const stockVolume = stockData?.data?.values.map(item => Number(item.volume)).reverse();
-	const stockOpen = stockData?.data?.values.map(item => Number(item.open)).reverse();
+
+	let dateTime = [];
+	let stockVolume = [];
+	let stockOpen = [];
+
+	if (stockData.data.status === 'ok') {
+		dateTime = stockData?.data?.values.map(item => item.datetime).reverse();
+		stockVolume = stockData?.data?.values.map(item => Number(item.volume)).reverse();
+		stockOpen = stockData?.data?.values.map(item => Number(item.open)).reverse();
+	}
+
 
 	const chartOptions = {
 		rangeSelector: {
@@ -94,8 +102,8 @@ const Chart = () => {
 	}
 	return (
 		<div>
-				<h3>Activo {stockData?.data?.meta?.symbol}</h3>
-				<p>Intervalo {stockData?.interval ? interval : ''}</p>
+			<h3>Activo {stockData?.data?.meta?.symbol}</h3>
+			<p>Intervalo {stockData?.interval ? interval : ''}</p>
 			<HighchartsReact
 				highcharts={Highcharts}
 				options={chartOptions}
